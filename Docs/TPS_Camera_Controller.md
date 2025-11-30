@@ -58,19 +58,23 @@ Horizontal = 1
 
 Kod:
 ```csharp
-    _viewDirection =
-        _playerTransform.position -
-        new Vector3(transform.position.x, _playerTransform.position.y, transform.position.z);
+_viewDirection =
+    _playerTransform.position -
+    new Vector3(transform.position.x, _playerTransform.position.y, transform.position.z);
 ```
 Hesap:
-```ini
+```charp
 camera.y → player.y yapılır:
 
-    camera: (1, 3, 1)
-    y = 0 yapılır → (1, 0, 1)
+camera: (1, 3, 1)
+y = 0 yapılır → (1, 0, 1)
 
-    _viewDirection = (5,0,5) - (1,0,1)
-                   = (4,0,4)
+new Vector3( camera.x , player.y , camera.z )
+= (1 , 0 , 1)
+
+
+_viewDirection = (5,0,5) - (1,0,1)
+                = (4,0,4)
 ```
 Normalize:
 
