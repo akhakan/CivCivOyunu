@@ -106,7 +106,7 @@ Hesap:
     ---------------------------------
     toplam       = (1.414, 0, 0)
 ```
-Normalize → (1, 0, 0)\
+Normalize → (1, 0, 0)
 ```csharp
 → W + D → karakter kameraya göre sağa gider.
 ```
