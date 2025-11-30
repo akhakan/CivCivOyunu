@@ -63,81 +63,67 @@ _viewDirection =
     new Vector3(transform.position.x, _playerTransform.position.y, transform.position.z);
 ```
 Hesap:
-```charp
+```csharp
 camera.y → player.y yapılır:
 
 camera: (1, 3, 1)
-y = 0 yapılır → (1, 0, 1)
-
-new Vector3( camera.x , player.y , camera.z )
-= (1 , 0 , 1)
-
+camera.y = 0 yapılır → (1, 0, 1)
+new Vector3( camera.x , player.y , camera.z ) → (1 , 0 , 1)
 
 _viewDirection = (5,0,5) - (1,0,1)
-                = (4,0,4)
+               = (4,0,4)
 ```
 Normalize:
-
-    length = sqrt(4² + 4²) = 5.657
-    normalized = (0.707, 0, 0.707)
-
+```csharp
+length = sqrt(4² + 4²) = 5.657
+normalized = (0.707, 0, 0.707)
+```
 ------------------------------------------------------------------------
 
 ## 🔵 2) `orientationTransform.forward`
-
-    orientation.forward = (0.707, 0, 0.707)
-
+```csharp
+orientation.forward = (0.707, 0, 0.707)
+```
 ------------------------------------------------------------------------
 
 ## 🔵 3) Input'a Göre Hareket Yönü
 
 Kod:
-
-    _inputDirection =
-        orientation.forward * verticalInput +
-        orientation.right   * horizontalInput;
+```csharp
+_inputDirection =
+    orientation.forward * verticalInput +
+    orientation.right   * horizontalInput;
 
 forward = (0.707, 0, 0.707)\
-right = (0.707, 0, --0.707)
-
+right = (0.707, 0, -0.707)
+```
 Hesap:
-
+```csharp
     forward * 1  = (0.707, 0, 0.707)
     right   * 1  = (0.707, 0, -0.707)
     ---------------------------------
     toplam       = (1.414, 0, 0)
-
+```
 Normalize → (1, 0, 0)\
+```csharp
 ➡ W + D → karakter kameraya göre sağa gider.
-
+```
 ------------------------------------------------------------------------
 
 ## 🔵 4) Player Görselinin Döndürülmesi
 
 Kod:
-
-    _playerVisualTransform.forward = Vector3.Slerp(
-        _playerVisualTransform.forward,
-        _inputDirection.normalized,
-        Time.deltaTime * _rotationSpeed
-    );
-
+```csharp
+_playerVisualTransform.forward = Vector3.Slerp(
+    _playerVisualTransform.forward,
+    _inputDirection.normalized,
+    Time.deltaTime * _rotationSpeed
+);
+```
 rotation hız örneği:
-
+```csharp
     rotationSpeed = 6
     deltaTime = 0.016
     Slerp factor = 0.096
-
+```
 Model her frame'de hedefe %9.6 yaklaşır.
-
-------------------------------------------------------------------------
-
-# 🟩 ÖZET
-
-  Adım                   Sonuç
-  ---------------------- ---------------------
-  Kamera → Player yönü   (0.707, 0, 0.707)
-  Orientation forward    (0.707, 0, 0.707)
-  Orientation right      (0.707, 0, --0.707)
-  Input (W+D) sonucu     (1, 0, 0)
-  Player görseli         Sağa döner
