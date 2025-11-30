@@ -45,14 +45,14 @@ Inspector'dan atanabilen bir `Transform`.\
 ### Varsayımlar:
 
 **Player pozisyonu:**\
-(5, 0, 5)
+→ (5, 0, 5)
 
 **Kamera pozisyonu:**\
-(1, 3, 1)
+→ (1, 3, 1)
 
 **Input (W + D):**\
-Vertical = 1\
-Horizontal = 1
+→ Vertical = 1\
+→ Horizontal = 1
 
 ------------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ _viewDirection = (5,0,5) - (1,0,1)
                = (4,0,4)
 ```
 Normalize:
-```csharp
+```markdown
 length = sqrt(4² + 4²) = 5.657
 normalized = (0.707, 0, 0.707)
 ```
@@ -108,7 +108,7 @@ Hesap:
 ```
 Normalize → (1, 0, 0)\
 ```csharp
-➡ W + D → karakter kameraya göre sağa gider.
+→ W + D → karakter kameraya göre sağa gider.
 ```
 ------------------------------------------------------------------------
 
@@ -128,4 +128,4 @@ rotation hız örneği:
     deltaTime = 0.016
     Slerp factor = 0.096
 ```
-Model her frame'de hedefe %9.6 yaklaşır.
+→ Model her frame'de hedefe %9.6 yaklaşır.
