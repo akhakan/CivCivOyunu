@@ -76,7 +76,7 @@ _viewDirection = (5,0,5) - (1,0,1)
                = (4,0,4)
 ```
 Normalize:
-```markdown
+```perl
 length = sqrt(4² + 4²) = 5.657
 normalized = (0.707, 0, 0.707)
 ```
