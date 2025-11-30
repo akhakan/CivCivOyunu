@@ -7,7 +7,7 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody _playerRigidbody; // player Rigidbody' eriþmek için
     private float _verticalInput, _horizontalInput; // ileri-geri klavye giriþleri tutan deðiþken, saða-sola klavye giriþleri tutan deðiþken
     private Vector3 _movementDirection; // klavye giriþlerine göre player ýn yönünü vektör 3 formatýnda tutan deðiþken
-    [SerializeField] private float _velocity = 20f; // player a uygulanacak kuvvetin þiddetini arttýran çarpan
+    [SerializeField] private float _movementSpeed = 20f; // player a uygulanacak kuvvetin þiddetini arttýran çarpan
     private void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody>(); // player gameobjesinin rigidbody sine eriþme 
@@ -25,7 +25,7 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _playerRigidbody.AddForce(_movementDirection.normalized * _velocity, ForceMode.Force); // player hareti saðlanýr. Rigidbody fizik gerektirdiðinden FixedUpdate içine yazýlmalýdýr. Normalized: ileri-saða veya geri-saða veya ileri-sola veya geri-sola tuþlarýna birlikte basýlýrsa vektör toplamýný 1 deðerine yuvarlar. ForceMode.Force: Sürekli sabit güç uygular.
+        _playerRigidbody.AddForce(_movementDirection.normalized * _movementSpeed, ForceMode.Force); // player hareti saðlanýr. Rigidbody fizik gerektirdiðinden FixedUpdate içine yazýlmalýdýr. Normalized: ileri-saða veya geri-saða veya ileri-sola veya geri-sola tuþlarýna birlikte basýlýrsa vektör toplamýný 1 deðerine yuvarlar. ForceMode.Force: Sürekli sabit güç uygular.
     }
 
 
