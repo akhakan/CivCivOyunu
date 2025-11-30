@@ -65,7 +65,7 @@ _viewDirection =
     new Vector3(transform.position.x, _playerTransform.position.y, transform.position.z);
 ```
 Hesap:
-```perl
+```csharp
 camera.y → player.y yapılır:
 
 camera: (1, 3, 1)
@@ -76,7 +76,7 @@ _viewDirection = (5,0,5) - (1,0,1)
                = (4,0,4)
 ```
 Normalize:
-```perl
+```csharp
 length = sqrt(4² + 4²) = 5.657
 normalized = (0.707, 0, 0.707)
 ```
