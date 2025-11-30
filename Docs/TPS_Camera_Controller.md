@@ -65,7 +65,7 @@ _viewDirection =
     new Vector3(transform.position.x, _playerTransform.position.y, transform.position.z);
 ```
 Hesap:
-```csharp
+```perl
 camera.y → player.y yapılır:
 
 camera: (1, 3, 1)
