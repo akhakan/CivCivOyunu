@@ -2,24 +2,24 @@
 
 ## 1. Kodun Satır Satır Açıklaması
 
-### `SerializeField] Transform _playerTransform;`
+### `[SerializeField] Transform _playerTransform;`
 
-Inspector'dan atanabilen bir Transform.\
+Inspector'dan atanabilen bir `Transform`.\
 → Oyuncunun pozisyon ve rotasyon bilgisi.
 
 ### `[SerializeField] Transform _orientationTransform;`
 
-Kameraya göre ileri yönü belirleyen boş obje.\
+**Kameraya göre ileri yönü** belirleyen boş obje.\
 → Karakterin hareket edeceği yön: `orientation.forward`.
 
 ### `[SerializeField] Transform _playerVisualTransform;`
 
-Oyuncunun sadece görsel modelidir.\
+Oyuncunun sadece görsel modelidir.
 → Hareket yönüne doğru döndürülür.
 
 ### `private float _rotationSpeed = 6f;`
 
-Slerp dönüş hızını kontrol eder.
+Slerp **dönüş** hızını kontrol eder.
 
 ### `private float _verticalInput, _horizontalInput;`
 
@@ -27,14 +27,14 @@ Input değerlerini saklar.
 
 ### `Update()`
 
-W, A, S, D veya joystick girdilerini okur.
+Kullacının W, A, S, D veya joystick girdilerini okur.
 
--   W → Vertical = +1\
--   S → Vertical = --1\
--   D → Horizontal = +1\
--   A → Horizontal = --1
+-   W → Vertical = +1
+-   S → Vertical = -1
+-   D → Horizontal = +1
+-   A → Horizontal = -1
 
-`GetAxisRaw()` hızlı değer döndürür (--1, 0, +1).
+`GetAxisRaw()` → (-1 / 0 / +1) hızlı tepki verir.
 
 ------------------------------------------------------------------------
 
@@ -57,13 +57,13 @@ Horizontal = 1
 ## 🔵 1) `viewDirection` Hesaplama
 
 Kod:
-
+```csharp
     _viewDirection =
         _playerTransform.position -
         new Vector3(transform.position.x, _playerTransform.position.y, transform.position.z);
-
+```
 Hesap:
-
+```ini
 camera.y → player.y yapılır:
 
     camera: (1, 3, 1)
@@ -71,7 +71,7 @@ camera.y → player.y yapılır:
 
     _viewDirection = (5,0,5) - (1,0,1)
                    = (4,0,4)
-
+```
 Normalize:
 
     length = sqrt(4² + 4²) = 5.657
