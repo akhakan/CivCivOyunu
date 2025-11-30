@@ -9,25 +9,27 @@ Inspector'dan atanabilen bir `Transform`.\
 
 ### `[SerializeField] Transform _orientationTransform;`
 
-**Kameraya göre ileri yönü** belirleyen boş obje.\
+Inspector'dan atanabilen bir `Transform`.\
+→ **Kameraya göre ileri yönü** belirleyen boş obje.\
 → Karakterin hareket edeceği yön: `orientation.forward`.
 
 ### `[SerializeField] Transform _playerVisualTransform;`
 
-Oyuncunun sadece görsel modelidir.
+Inspector'dan atanabilen bir `Transform`.\
+→ Oyuncunun sadece görsel modelidir.\
 → Hareket yönüne doğru döndürülür.
 
 ### `private float _rotationSpeed = 6f;`
 
-Slerp **dönüş** hızını kontrol eder.
+→ Slerp **dönüş** hızını kontrol eder.
 
 ### `private float _verticalInput, _horizontalInput;`
 
-Input değerlerini saklar.
+→ Input değerlerini saklar.
 
 ### `Update()`
 
-Kullacının W, A, S, D veya joystick girdilerini okur.
+→ Kullacının W, A, S, D veya joystick girdilerini okur.
 
 -   W → Vertical = +1
 -   S → Vertical = -1
