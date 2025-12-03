@@ -129,3 +129,60 @@ rotation hız örneği:
     Slerp factor = 0.096
 ```
 → Model her frame'de hedefe %9.6 yaklaşır.
+
+
+
+## Time.deltaTime Nedir?
+
+`Time.deltaTime`, bir önceki frame ile mevcut frame arasındaki süreyi **saniye cinsinden** verir.
+
+Örneğin oyun 60 FPS (frame per second) ile çalışıyorsa:
+
+```
+deltaTime ≈ 1 / 60 ≈ 0.0167 saniye
+```
+
+Bu örnekte `deltaTime = 0.016` olarak alınmış. Yani her frame yaklaşık 0.016 saniye sürüyor.
+
+---
+
+## Slerp Faktörünün Hesabı
+
+`Vector3.Slerp(a, b, t)` şu mantıkta çalışır:
+
+> **Slerp sonucu** = a yönünden b yönüne doğru t oranında yaklaşır.
+
+- `t` değeri 0 ile 1 arasında olmalıdır.
+- Kodda `t = Time.deltaTime * _rotationSpeed` olarak verilmiş.
+
+Örnek değerler:
+
+```csharp
+_rotationSpeed = 6
+Time.deltaTime = 0.016
+```
+
+Hesap:
+
+```
+Slerp factor = deltaTime × rotationSpeed
+             = 0.016 × 6
+             = 0.096
+```
+
+Bu demek oluyor ki her frame model, hedef yönüne yaklaşık %9.6 yaklaşır.
+
+---
+
+## Mantık
+
+- `rotationSpeed` değeri, **dönüşün ne kadar hızlı olacağını** belirler.
+- `deltaTime` ile çarpılması, **FPS’den bağımsız bir dönüş hızı** sağlar.
+- Sonuçta Slerp faktörü:
+
+```
+faktor = deltaTime × rotationSpeed
+```
+
+- Örnek: 0.096 → %9.6 yaklaşım  
+- Eğer faktor 1 olursa, bir frame’de direkt hedef yönüne dönülür.
