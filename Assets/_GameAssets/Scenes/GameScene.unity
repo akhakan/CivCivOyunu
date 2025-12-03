@@ -993,7 +993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4df01eebfe81c479f163b884d8d17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementOrientation: {fileID: 1507446321}
+  _orientationTransform: {fileID: 1507446321}
   _movementSpeed: 20
 --- !u!1 &1067189756
 GameObject:
