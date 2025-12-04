@@ -10,29 +10,31 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 6f; // Oyuncu görselinin dönme hýzýný kontrol eder
     private float _verticalInput, _horizontalInput; // Klavye/joystick input deðerlerini saklamak için
 
-    private Vector3 _viewDirection, _inputDirection; // Kameraya bakýþ yönü ve oyuncunun hareket input yönü
+    private Vector3 _inputDirection; // Oyuncunun hareket input yönü
 
     void Update()
     {
         // Kullanýcý inputlarýný oku. GetAxisRaw anlýk ham input verir (sürekli deðil, -1/0/1 yakýn deðerler)
         _verticalInput = Input.GetAxisRaw("Vertical");
         _horizontalInput = Input.GetAxisRaw("Horizontal");
-            }
-    private void LateUpdate()
-    {
-        // Kamera ile oyuncu arasýndaki yatay (Y ekseni sabit) bakýþ vektörünü hesapla.
-        // transform.position.x/z kullanýlarak kamera pozisyonunun X ve Z'si alýnýr,
-        // ancak Y deðeri oyuncunun Y'si ile eþitlenir -> böylece yukarý-aþaðý farký görmezden gelerek sadece yatay yön hesaplanýr.
-        _viewDirection = _playerTransform.position - new Vector3(transform.position.x, _playerTransform.position.y, transform.position.z);
-        // Hesaplanan bakýþ vektörünü orientation transformunun forward (ileri) yönü yap.
-        // orientation, oyuncunun 'ilerisi' olarak kabul edilecektir; input yönünü buna göre dönüþtüreceðiz.
-        _orientationTransform.forward = _viewDirection.normalized;
-
 
         // Orientation'ýn forward ve right vektörlerini kullanarak dünya uzayýnda hareket yönünü hesapla.
         // vertical input -> ileri/geri, horizontal input -> sað/sol.
         // Böylece kameraya göre yönlendirilmiþ bir input vektörü elde edilir.
         _inputDirection = _orientationTransform.forward * _verticalInput + _orientationTransform.right * _horizontalInput;
+    }
+
+    // LateUpdate() sadece kamera/görsel iþler için - LateUpdate(), tüm Update() çaðrýlarý bittikten sonra çalýþýr. Genellikle kamera takibi ve animasyon sonrasý ayarlamalar için kullanýlýr.
+    private void LateUpdate()
+    {
+        // Kamera ile oyuncu arasýndaki yatay (Y ekseni sabit) bakýþ vektörünü hesapla.
+        // transform.position.x/z kullanýlarak kamera pozisyonunun X ve Z'si alýnýr,
+        // ancak Y deðeri oyuncunun Y'si ile eþitlenir -> böylece yukarý-aþaðý farký görmezden gelerek sadece yatay yön hesaplanýr.
+        Vector3 _viewDirection = _playerTransform.position - new Vector3(transform.position.x, _playerTransform.position.y, transform.position.z);
+      
+        // Hesaplanan bakýþ vektörünü orientation transformunun forward (ileri) yönü yap.
+        // orientation, oyuncunun 'ilerisi' olarak kabul edilecektir; input yönünü buna göre dönüþtüreceðiz.
+        _orientationTransform.forward = _viewDirection.normalized;
 
         // Eðer input yönü sýfýr deðilse (yani oyuncu bir yönde hareket etmeye çalýþýyorsa) oyuncu modelini döndür.
         if (_inputDirection != Vector3.zero)
